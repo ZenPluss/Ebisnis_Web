@@ -6,6 +6,30 @@
     <title>On IT</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                position: relative;
+                overflow-x: hidden;
+            }
+            
+            .nav-container {
+                left: -100%;
+                width: 85%; /* Sesuaikan jika perlu */
+                margin: 0;
+                padding: 80px 20px 20px;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+            
+            .header {
+                padding: 10px 15px;
+            }
+        }
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -24,13 +48,14 @@
         .header {
             position: fixed;
             top: 0;
-            width: 99%;
+            width: 100%;
             background: linear-gradient(90deg, rgba(15, 15, 15, 0.95), rgba(15, 15, 15, 0.8));
-            padding: 20px;
+            padding: 15px 20px;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-sizing: border-box;
         }
 
         .header .logo {
@@ -38,17 +63,21 @@
             font-weight: bold;
             color: #ffffff;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
         }
 
         .header .nav-container {
             display: flex;
-            flex-grow: 1;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
         .header .main-nav {
             display: flex;
             gap: 20px;
+            margin-left: 20px;
         }
 
         .header .secondary-nav {
@@ -63,6 +92,7 @@
             font-weight: 500;
             font-size: 16px;
             transition: color 0.3s;
+            white-space: nowrap;
         }
 
         .header .nav a:hover {
@@ -77,6 +107,7 @@
             justify-content: center;
             overflow: hidden;
             text-align: center;
+            margin-top: 60px;
         }
 
         .hero .background-video {
@@ -259,59 +290,162 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .hero .content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero .content img:hover {
+            transform: scale(1.2) rotate(2deg);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: row;
+                padding: 10px 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .nav-container {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: #0f0f0f;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 20px 20px;
+                transition: 0.5s;
+                z-index: 1000;
+            }
+
+            .nav-container.active {
+                left: 0;
+            }
+
+            .main-nav, .secondary-nav {
+                flex-direction: column;
+                gap: 15px;
+                margin: 0;
+                width: 100%;
+            }
+
+            .main-nav {
+                margin-bottom: 30px;
+            }
+
+            .header .nav a {
+                font-size: 18px;
+                padding: 10px 0;
+                display: block;
+                border-bottom: 1px solid #333;
+            }
+
+            .hero {
+                padding: 80px 20px 40px;
+                height: auto;
+                min-height: 80vh;
+                margin-top: 0;
+            }
+
+            .hero .content img {
+                height: 60px;
+            }
+
+            .hero .content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .content p {
+                font-size: 1rem;
+            }
+
+            .hero .content .btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .features h2,
+            .about h2 {
+                font-size: 2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card-image {
+                height: 180px;
+            }
+
+            .footer img {
+                width: 80%;
+                max-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="logo">ON IT</div>
+        <div class="logo">
+            <img src="logo putih 1.png" alt="On IT Logo" style="height: 40px;">
+        </div>
         
-        <div class="nav-container">
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="nav-container" id="mobileMenu">
             <div class="main-nav nav">
                 <a href="/">Home</a>
                 <a href="#features">Product</a>
                 <a href="#about">About</a>
             </div>
-        </div>
-        
-        <div class="secondary-nav nav">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
-            <a href="#">Contact</a>
+            <div class="secondary-nav nav">
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+                <a href="#">Contact</a>
+            </div>
         </div>
     </div>
 
-<div class="hero">
-    <iframe class="background-video" 
-        src="https://www.youtube.com/embed/NPNv8S5Xrdk?autoplay=1&mute=1&controls=0&loop=1&playlist=NPNv8S5Xrdk"
-        frameborder="0" allow="autoplay; fullscreen"
-        allowfullscreen>
-    </iframe>
-    <div class="overlay"></div>
-    <div class="content">
-        <h1>On IT</h1>
-        <p>Your No.1 Total IT Solution Partner.</p>
-        <a href="#features" class="btn" id="loginButton">Product</a>
+    <div class="hero">
+        <iframe class="background-video" 
+            src="https://www.youtube.com/embed/NPNv8S5Xrdk?autoplay=1&mute=1&controls=0&loop=1&playlist=NPNv8S5Xrdk"
+            frameborder="0" allow="autoplay; fullscreen"
+            allowfullscreen>
+        </iframe>
+        <div class="overlay"></div>
+        <div class="content">
+            <img src="logo putih 1.png" alt="On IT Logo" style="height: 100px;">
+            <p>Your No.1 Total IT Solution Partner.</p>
+            <a href="#features" class="btn" id="loginButton">Product</a>
+        </div>
     </div>
-</div>
-
-    <script>
-        document.getElementById("loginButton").addEventListener("click", function(event) {
-            event.preventDefault();
-            document.getElementById("features").scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-
-        const videos = ["MSI.mp4", "ROG.mp4"];
-        const videoElement = document.getElementById("backgroundVideo");
-        let currentVideoIndex = 0;
-
-        const playNextVideo = () => {
-            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            videoElement.src = videos[currentVideoIndex];
-            videoElement.play();
-        };
-
-        videoElement.addEventListener("ended", playNextVideo);
-    </script>
 
     <div class="features" id="features">
         <h2>Products</h2>
@@ -319,7 +453,7 @@
         <div class="cards">
             <div class="card">
                 <div class="card-image">
-                    <img src="amd.jpeg" alt="Feature Image 1">
+                    <img src="Mouse 1.jpeg" alt="Feature Image 1">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
@@ -328,7 +462,7 @@
             </div>
             <div class="card">
                 <div class="card-image">
-                    <img src="intel.png" alt="Feature Image 2">
+                    <img src="keyboard 1.jpg" alt="Feature Image 2">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
@@ -412,5 +546,50 @@
         <img src="logo putih 1.png" alt="Footer Image" />
         <p>&copy; 2025 On IT. All rights reserved.</p>
     </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Animate hamburger icon
+            const spans = this.querySelectorAll('span');
+            if (this.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'rotate(0) translate(0)';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'rotate(0) translate(0)';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (mobileMenu.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    
+                    const spans = menuToggle.querySelectorAll('span');
+                    spans[0].style.transform = 'rotate(0) translate(0)';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'rotate(0) translate(0)';
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
