@@ -3,414 +3,898 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>On IT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <title>On IT - Total IT Solution Partner</title>
+    <meta name="description" content="Your No.1 Total IT Solution Partner. Discover our products and services for all your technology needs.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    :root {
+        --primary-color: #00a8ff;
+        --primary-dark: #0077b6;
+        --dark-bg: #121a24;
+        --darker-bg: #0d121b;
+        --card-bg: #1e293b;
+        --text-color: #ffffff;
+        --text-light: rgba(255,255,255,0.8);
+        --divider-color: rgba(255, 255, 255, 0.1);
+        --transition: all 0.3s ease;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
 
-        @media (max-width: 768px) {
-            body {
-                position: relative;
-                overflow-x: hidden;
-            }
-            
-            .nav-container {
-                left: -100%;
-                width: 85%; /* Sesuaikan jika perlu */
-                margin: 0;
-                padding: 80px 20px 20px;
-                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            }
-            
-            .header {
-                padding: 10px 15px;
-            }
-        }
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-color);
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+    }
 
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(90deg, rgba(15, 15, 15, 0.95), rgba(15, 15, 15, 0.8));
-            padding: 15px 20px;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        .header .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ffffff;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-        }
+    /* Header Styles */
+    .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(18, 26, 36, 0.95), rgba(18, 26, 36, 0.9));
+        padding: 15px 20px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-        .header .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
+    .header .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--text-color);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        .header .main-nav {
-            display: flex;
-            gap: 20px;
-            margin-left: 20px;
-        }
+    .header .logo img {
+        height: 40px;
+        transition: var(--transition);
+    }
 
-        .header .secondary-nav {
-            display: flex;
-            gap: 20px;
-            margin-left: auto;
-        }
+    .header .logo:hover img {
+        transform: rotate(10deg);
+    }
 
-        .header .nav a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s;
-            white-space: nowrap;
-        }
+    .header .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 
-        .header .nav a:hover {
-            color: #f39c12;
-        }
+    .header .main-nav {
+        display: flex;
+        gap: 25px;
+        margin-left: 20px;
+    }
 
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-align: center;
-            margin-top: 60px;
-        }
+    .header .secondary-nav {
+        display: flex;
+        gap: 20px;
+        margin-left: auto;
+    }
 
-        .hero .background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
+    .header .nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: 16px;
+        transition: var(--transition);
+        white-space: nowrap;
+        position: relative;
+        padding: 5px 0;
+    }
 
-        .hero .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
+    .header .nav a:hover {
+        color: var(--primary-color);
+    }
 
-        .hero .content {
-            position: relative;
-            z-index: 2;
-            color: #ffffff;
-            max-width: 800px;
-            padding: 0 20px;
-        }
+    .header .nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: var(--transition);
+    }
 
+    .header .nav a:hover::after {
+        width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .hero .background-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .hero .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+        z-index: 1;
+    }
+
+    .hero .content {
+        position: relative;
+        z-index: 2;
+        color: var(--text-color);
+        max-width: 800px;
+        padding: 0 20px;
+        animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero .content img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        transition: var(--transition);
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+
+    .hero .content img:hover {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .hero .content h1 {
+        font-size: 4.5rem;
+        margin: 0;
+        text-shadow: var(--shadow);
+        transition: var(--transition);
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    .hero .content h1:hover {
+        transform: scale(1.05);
+        color: var(--primary-color);
+        text-shadow: 0 6px 12px rgba(0, 168, 255, 0.3);
+    }
+
+    .hero .content p {
+        font-size: 1.3rem;
+        margin: 20px 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        color: var(--text-light);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: var(--primary-color);
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 50px;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 168, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 168, 255, 0.4);
+    }
+
+    .btn:active {
+        transform: translateY(1px);
+    }
+
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
+        border-radius: 50px;
+    }
+
+    /* Features & About Sections */
+    .section {
+        padding: 80px 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .features {
+        background: var(--darker-bg);
+    }
+
+    .about {
+        background: var(--dark-bg);
+    }
+
+    .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        position: relative;
+        display: inline-block;
+    }
+
+    .section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 3px;
+    }
+
+    .section p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        line-height: 1.6;
+        color: var(--text-light);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about p {
+        font-size: 1.2rem;
+    }
+
+    /* Cards */
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 25px;
+        text-align: left;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--primary-color);
+    }
+
+    .card-image {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 8px;
+        background: rgba(0,0,0,0.2);
+    }
+
+    .card-image img {
+        width: auto;
+        height: 100%;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .card:hover .card-image img {
+        transform: scale(1.05);
+    }
+
+    .card h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-top: 15px;
+        font-weight: 700;
+    }
+
+    .card p {
+        font-size: 1rem;
+        line-height: 1.6;
+        flex-grow: 1;
+        color: var(--text-light);
+        margin-bottom: 15px;
+    }
+
+    .card .btn {
+        align-self: flex-start;
+        padding: 8px 20px;
+        font-size: 14px;
+        margin-top: auto;
+    }
+
+    .divider {
+        height: 1px;
+        background: var(--divider-color);
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    /* Professional Footer Styles */
+    .footer {
+        background: linear-gradient(135deg, #0a0e17 0%, #121a24 100%);
+        padding: 60px 20px 30px;
+        color: var(--text-color);
+        font-size: 14px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+    }
+
+    .footer-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-logo img {
+        max-width: 180px;
+        height: auto;
+        margin-bottom: 20px;
+        transition: var(--transition);
+    }
+
+    .footer-logo img:hover {
+        transform: scale(1.05);
+    }
+
+    .footer-logo p {
+        color: var(--text-light);
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .footer-column h3 {
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--primary-color);
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary-color);
+        transform: translateX(5px);
+    }
+
+    .footer-links i {
+        width: 20px;
+        text-align: center;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: var(--text-light);
+    }
+
+    .contact-item i {
+        color: var(--primary-color);
+        margin-top: 3px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: rgba(255,255,255,0.1);
+        color: var(--text-color);
+        border-radius: 50%;
+        transition: var(--transition);
+    }
+
+    .social-links a:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 40px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        color: var(--text-light);
+        font-size: 13px;
+    }
+
+    .footer-legal {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    .footer-legal a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .footer-legal a:hover {
+        color: var(--primary-color);
+    }
+
+    .map-container {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+        display: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+        transition: var(--transition);
+    }
+
+    .menu-toggle:hover {
+        opacity: 0.8;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--text-color);
+        margin: 5px 0;
+        transition: var(--transition);
+        border-radius: 3px;
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        transition: var(--transition);
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .scroll-top.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .scroll-top:hover {
+        background: var(--primary-dark);
+        transform: translateY(-5px);
+    }
+
+    /* Product Description Overlay Styles */
+    .card-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .card-overlay.show {
+        display: flex;
+        opacity: 1;
+    }
+
+    .card-overlay-content {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        border: 1px solid var(--primary-color);
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .card-overlay.show .card-overlay-content {
+        transform: translateY(0);
+    }
+
+    .close-overlay {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: var(--primary-color);
+        font-size: 24px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+        z-index: 1;
+    }
+
+    #overlayTitle {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        padding-right: 30px;
+    }
+
+    #overlayDescription {
+        color: var(--text-light);
+        line-height: 1.6;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
         .hero .content h1 {
-            font-size: 4.5rem;
-            margin: 0;
-            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease-in-out;
+            font-size: 3.5rem;
         }
-
-        .hero .content h1:hover {
-            transform: scale(1.2) rotate(2deg);
-            color: #f39c12;
-        }
-
+        
         .hero .content p {
-            font-size: 1.3rem;
-            margin: 20px 0;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.1rem;
         }
+    }
 
-        .hero .content .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #f39c12;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .hero .content .btn:hover {
-            background: #d35400;
-            transform: scale(1.05);
-        }
-
-        .features, .about {
-            padding: 50px 20px;
-            background: #181818;
-            text-align: center;
-        }
-
-        .about {
-            background: #121212;
-        }
-
-        .features h2, .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #f39c12;
-        }
-
-        .features p, .about p {
-            font-size: 1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .about p {
-            font-size: 1.2rem;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: #222;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: left;
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .card-image img {
-            width: auto;
-            height: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .card h3 {
-            color: #f39c12;
-            font-size: 1.5rem;
-            margin-top: 15px;
-        }
-
-        .card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .card .btn {
-            align-self: flex-start;
-            background: #f39c12;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .card .btn:hover {
-            background: #d35400;
-        }
-
-        .divider {
-            height: 2px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 10px 0;
-        }
-
-        .footer {
-            padding: 20px;
-            background: #000000;
-            text-align: center;
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        .footer img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .hero .content img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hero .content img:hover {
-            transform: scale(1.2) rotate(2deg);
+    @media (max-width: 768px) {
+        .header {
+            padding: 10px 15px;
         }
 
         .menu-toggle {
-            display: none;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .menu-toggle span {
             display: block;
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 5px 0;
-            transition: 0.4s;
         }
 
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: row;
-                padding: 10px 15px;
-            }
-
-            .menu-toggle {
-                display: block;
-                z-index: 1001;
-            }
-
-            .nav-container {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: #0f0f0f;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 80px 20px 20px;
-                transition: 0.5s;
-                z-index: 1000;
-            }
-
-            .nav-container.active {
-                left: 0;
-            }
-
-            .main-nav, .secondary-nav {
-                flex-direction: column;
-                gap: 15px;
-                margin: 0;
-                width: 100%;
-            }
-
-            .main-nav {
-                margin-bottom: 30px;
-            }
-
-            .header .nav a {
-                font-size: 18px;
-                padding: 10px 0;
-                display: block;
-                border-bottom: 1px solid #333;
-            }
-
-            .hero {
-                padding: 80px 20px 40px;
-                height: auto;
-                min-height: 80vh;
-                margin-top: 0;
-            }
-
-            .hero .content img {
-                height: 60px;
-            }
-
-            .hero .content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .content p {
-                font-size: 1rem;
-            }
-
-            .hero .content .btn {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-
-            .features h2,
-            .about h2 {
-                font-size: 2rem;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .card-image {
-                height: 180px;
-            }
-
-            .footer img {
-                width: 80%;
-                max-width: 200px;
-            }
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            height: 100vh;
+            background-color: var(--dark-bg);
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 80px 20px 20px;
+            transition: 0.5s;
+            z-index: 1000;
+            border-right: 1px solid rgba(255,255,255,0.1);
         }
+
+        .nav-container.active {
+            left: 0;
+        }
+
+        .main-nav, .secondary-nav {
+            flex-direction: column;
+            gap: 15px;
+            margin: 0;
+            width: 100%;
+        }
+
+        .main-nav {
+            margin-bottom: 30px;
+        }
+
+        .header .nav a {
+            font-size: 18px;
+            padding: 10px 0;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .nav a::after {
+            display: none;
+        }
+
+        .hero {
+            padding: 80px 20px 40px;
+            height: auto;
+            min-height: 80vh;
+            margin-top: 0;
+        }
+
+        .hero .content img {
+            height: 80px;
+        }
+
+        .hero .content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero .content p {
+            font-size: 1rem;
+        }
+
+        .hero .content .btn {
+            font-size: 16px;
+            padding: 10px 25px;
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+        }
+
+        /* Hide product descriptions only in product cards (not about cards) */
+        .features .card p {
+            display: none;
+        }
+        
+        .features .card .btn.view-details {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .cards {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            margin-bottom: 0;
+            padding: 15px;
+        }
+
+        .card-image {
+            height: 120px;
+        }
+
+        .footer-container {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-logo {
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-column {
+            text-align: center;
+        }
+
+        .footer-column h3::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .footer-links {
+            padding: 0;
+        }
+
+        .footer-links a {
+            justify-content: center;
+        }
+
+        .contact-item {
+            justify-content: center;
+        }
+
+        .social-links {
+            justify-content: center;
+        }
+
+        .map-container {
+            height: 200px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero .content h1 {
+            font-size: 2rem;
+        }
+        
+        .hero .content p {
+            font-size: 0.9rem;
+        }
+        
+        .section h2 {
+            font-size: 1.8rem;
+        }
+        
+        .cards {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .card h3 {
+            font-size: 1.2rem;
+        }
+        
+        .card p {
+            font-size: 0.9rem;
+        }
+        
+        .card .btn {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+        
+        .scroll-top {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+    
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo">
-            <img src="logo putih 1.png" alt="On IT Logo" style="height: 40px;">
+            <img src="white_12341.png" alt="On IT Logo">
         </div>
         
         <div class="menu-toggle" id="menuToggle">
@@ -421,14 +905,14 @@
         
         <div class="nav-container" id="mobileMenu">
             <div class="main-nav nav">
-                <a href="/">Home</a>
-                <a href="#features">Product</a>
-                <a href="#about">About</a>
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <a href="#features"><i class="fas fa-laptop"></i> Products</a>
+                <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
             </div>
             <div class="secondary-nav nav">
-                <a href="#">Login</a>
-                <a href="#">Register</a>
-                <a href="#">Contact</a>
+                <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="#"><i class="fas fa-user-plus"></i> Register</a>
             </div>
         </div>
     </div>
@@ -442,99 +926,117 @@
         <div class="overlay"></div>
         <div class="content">
             <img src="logo putih 1.png" alt="On IT Logo" style="height: 100px;">
-            <p>Your No.1 Total IT Solution Partner.</p>
-            <a href="#features" class="btn" id="loginButton">Product</a>
+            <p>Your one-stop destination for all technology needs. Quality products, expert solutions, and unparalleled service.</p>
+            <a href="#features" class="btn" id="loginButton">Explore Products</a>
         </div>
     </div>
 
-    <div class="features" id="features">
-        <h2>Products</h2>
-        <p>Discover what makes our IT marketplace a unique experience. Explore, connect, and thrive in a dynamic world of technology parts.</p>
+    <div class="section features" id="features">
+        <h2>Our Products</h2>
+        <p>Discover our wide range of high-quality IT products to meet all your technology requirements.</p>
         <div class="cards">
-            <div class="card">
+            <div class="card" data-description="Ergonomic designs with precision tracking for gaming and professional use. Features adjustable DPI settings, customizable buttons, and wireless connectivity with long battery life.">
                 <div class="card-image">
-                    <img src="Mouse 1.jpeg" alt="Feature Image 1">
+                    <img src="g502x-plus-08-media-tile.webp" alt="Computer Mouse" style="height: 200px;">
                 </div>
+                
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>Mouse</h3>
+                    <h3>Premium Mouse</h3>
+                    <p>Ergonomic designs with precision tracking for gaming and professional use.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-description="Responsive keys with customizable RGB lighting for the ultimate typing experience. Mechanical switches provide tactile feedback and durability for over 50 million keystrokes.">
                 <div class="card-image">
-                    <img src="keyboard 1.jpg" alt="Feature Image 2">
+                    <img src="ChatGPT Image 28 Jun 2025, 00.58.15.png" alt="Mechanical Keyboard" style="height: 230px;">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>Keyboard</h3>
+                    <h3>Mechanical Keyboards</h3>
+                    <p>Responsive keys with customizable RGB lighting for the ultimate typing experience.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-description="Latest generation CPUs for gaming, content creation, and professional workloads. Multi-core processors with high clock speeds and efficient power consumption.">
                 <div class="card-image">
-                    <img src="Razer-Logo.png" alt="Feature Image 2">
+                    <img src="ChatGPT Image 28 Jun 2025, 01.47.28.png" alt="Processor" style="height: 230px;">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>Processor</h3>
+                    <h3>High-Performance Processors</h3>
+                    <p>Latest generation CPUs for gaming, content creation, and professional workloads.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-description="Crystal-clear displays with high refresh rates for immersive viewing experiences. 4K resolution with HDR support and wide color gamut for accurate color reproduction.">
                 <div class="card-image">
-                    <img src="hyperx.jpg" alt="Feature Image 2">
+                    <img src="ChatGPT Image 28 Jun 2025, 01.41.58.png" alt="Computer Monitor" style="height: 230px;">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>Monitor</h3>
+                    <h3>4K Monitors</h3>
+                    <p>Crystal-clear displays with high refresh rates for immersive viewing experiences.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-description="Portable workstations with cutting-edge performance and battery life. Thin and light designs with powerful processors and dedicated graphics for professionals on the go.">
                 <div class="card-image">
-                    <img src="Logitech.jpg" alt="Feature Image 2">
+                    <img src="Laptop Gaming dengan Latar Abstrak Berwarna.png" alt="Laptop" style="height: 230px;">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>Laptops</h3>
+                    <h3>Powerful Laptops</h3>
+                    <p>Portable workstations with cutting-edge performance and battery life.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-description="Top-tier GPUs for gaming, AI development, and graphic-intensive applications. Real-time ray tracing and AI acceleration for the most demanding visual workloads.">
                 <div class="card-image">
-                    <img src="nvidiaa.png" alt="Feature Image 2">
+                    <img src="Kartu Grafis dengan Lampu LED Berwarna.png" alt="Graphics Card" style="height: 230px;">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>GPU</h3>
+                    <h3>Graphics Cards</h3>
+                    <p>Top-tier GPUs for gaming, AI development, and graphic-intensive applications.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-description="SSD and NVMe solutions for lightning-fast data access and transfer speeds. High endurance ratings with advanced error correction for reliable long-term storage.">
                 <div class="card-image">
-                    <img src="rog.jpeg" alt="Feature Image 2">
+                    <img src="ChatGPT Image 28 Jun 2025, 01.55.08.png" alt="SSD Storage" style="height: 230px;">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
-                    <h3>Storage</h3>
+                    <h3>High-Speed Storage</h3>
+                    <p>SSD and NVMe solutions for lightning-fast data access and transfer speeds.</p>
+                    <a href="#" class="btn view-details">View Details</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="about" id="about">
+    <div class="section about" id="about">
         <h2>About On IT</h2>
         <p>On IT is a leading IT solutions provider that offers cutting-edge technology and services to businesses and individuals alike. We focus on delivering innovative, reliable, and customer-centric solutions to meet the unique needs of each client.</p>
         <div class="cards">
             <div class="card">
                 <div class="card-content">
+                    <i class="fas fa-microchip" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
                     <h3>Our Technology</h3>
                     <p>We use the latest and most reliable technology to build and maintain our solutions. Our expertise in database management, cloud solutions, and networking makes us the best choice for businesses.</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-content">
+                    <i class="fas fa-users" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
                     <h3>Our Clients</h3>
                     <p>We work with a wide range of industries, from small startups to large enterprises, ensuring that we provide tailored solutions that meet specific business needs.</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-content">
+                    <i class="fas fa-bullseye" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;"></i>
                     <h3>Our Mission</h3>
                     <p>Our mission is to empower businesses through technology, helping them achieve operational efficiency, growth, and success in an increasingly digital world.</p>
                 </div>
@@ -542,9 +1044,89 @@
         </div>
     </div>
 
-    <div class="footer">
-        <img src="logo putih 1.png" alt="Footer Image" />
-        <p>&copy; 2025 On IT. All rights reserved.</p>
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo putih 1.png" alt="On IT Logo">
+                <p>Your No.1 Total IT Solution Partner. Quality products, expert solutions, and unparalleled service.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Products</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Products</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Computer Hardware</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Networking Solutions</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Software Solutions</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> IT Services</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Tech Street, Digital City, 101010</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+62 852 3293 1133</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@onit.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 9AM - 6PM</span>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.800350483343!2d107.61872931537382!3d-6.914077369406447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7a9a8b9a9b9%3A0x2e68e7a9a8b9a9b9!2sTech%20Street!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 On IT. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Description Overlay -->
+    <div class="card-overlay" id="cardOverlay">
+        <div class="card-overlay-content">
+            <button class="close-overlay" aria-label="Close overlay">&times;</button>
+            <h3 id="overlayTitle">Product Title</h3>
+            <div id="overlayDescription">Product description will appear here.</div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop" title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
     </div>
 
     <script>
@@ -588,6 +1170,94 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const cards = document.querySelectorAll('.card');
+            const windowHeight = window.innerHeight;
+            
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                if (cardPosition < windowHeight - 100) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize card animations
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Product Description Overlay Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('cardOverlay');
+            const overlayTitle = document.getElementById('overlayTitle');
+            const overlayDescription = document.getElementById('overlayDescription');
+            
+            // Handle view details button clicks
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const card = this.closest('.card');
+                    const title = card.querySelector('h3').textContent;
+                    const description = card.dataset.description;
+                    
+                    overlayTitle.textContent = title;
+                    overlayDescription.textContent = description;
+                    
+                    // Show overlay with animation
+                    overlay.classList.add('show');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+
+            // Close overlay
+            document.querySelector('.close-overlay').addEventListener('click', function() {
+                overlay.classList.remove('show');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+
+            // Close when clicking outside content
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    overlay.classList.remove('show');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            });
+
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('show')) {
+                    overlay.classList.remove('show');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
             });
         });
     </script>
