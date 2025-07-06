@@ -691,6 +691,120 @@
         line-height: 1.6;
     }
 
+    /* Brand Selection Overlay */
+    .brand-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .brand-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .brand-container {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 30px;
+        position: relative;
+        border: 1px solid var(--primary-color);
+    }
+
+    .close-brand-overlay {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--primary-color);
+        transition: var(--transition);
+    }
+
+    .close-brand-overlay:hover {
+        transform: rotate(90deg);
+    }
+
+    .brand-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .brand-header h3 {
+        font-size: 24px;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+
+    .brand-header p {
+        color: var(--text-light);
+    }
+
+    .brand-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .brand-card {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: var(--primary-color);
+    }
+
+    .brand-image {
+        width: 100%;
+        height: 120px;
+        object-fit: contain;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
+
+    .brand-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: var(--text-color);
+        font-size: 16px;
+    }
+
+    .brand-price {
+        color: var(--primary-color);
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .brand-specs {
+        color: var(--text-light);
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
     /* Responsive Styles */
     @media (max-width: 1024px) {
         .hero .content h1 {
@@ -847,6 +961,10 @@
         .map-container {
             height: 200px;
         }
+
+        .brand-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (max-width: 480px) {
@@ -887,8 +1005,15 @@
             bottom: 20px;
             right: 20px;
         }
+
+        .brand-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .brand-container {
+            padding: 20px 15px;
+        }
     }
-    
     </style>
 </head>
 <body>
@@ -935,82 +1060,124 @@
         <h2>Our Products</h2>
         <p>Discover our wide range of high-quality IT products to meet all your technology requirements.</p>
         <div class="cards">
-            <div class="card" data-description="Ergonomic designs with precision tracking for gaming and professional use. Features adjustable DPI settings, customizable buttons, and wireless connectivity with long battery life.">
+            <!-- Premium Mouse Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"Logitech G502 X","price":"Rp 1.299.000","image":"g502x-plus-08-media-tile.webp","specs":"25K DPI, 8 buttons, LIGHTSPEED wireless"},
+                     {"name":"Razer Basilisk V3","price":"Rp 1.199.000","image":"basilisk.jpg","specs":"26K DPI, 11 buttons, Chroma RGB"},
+                     {"name":"SteelSeries Aerox 5","price":"Rp 1.499.000","image":"steelseries-aerox5.png","specs":"18K DPI, 9 buttons, ultra-lightweight"}
+                 ]'>
                 <div class="card-image">
-                    <img src="g502x-plus-08-media-tile.webp" alt="Computer Mouse" style="height: 200px;">
+                    <img src="g502x-plus-08-media-tile.webp" alt="Computer Mouse">
                 </div>
-                
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>Premium Mouse</h3>
                     <p>Ergonomic designs with precision tracking for gaming and professional use.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="Premium Mouse">View Details</a>
                 </div>
             </div>
-            <div class="card" data-description="Responsive keys with customizable RGB lighting for the ultimate typing experience. Mechanical switches provide tactile feedback and durability for over 50 million keystrokes.">
+
+            <!-- Mechanical Keyboards Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"Keychron K8 Pro","price":"Rp 1.899.000","image":"keychron-k8-pro.png","specs":"Gateron switches, RGB backlight, Bluetooth"},
+                     {"name":"Razer BlackWidow V4","price":"Rp 2.499.000","image":"razer-blackwidow.png","specs":"Razer switches, per-key RGB, wrist rest"},
+                     {"name":"Logitech MX Mechanical","price":"Rp 2.199.000","image":"logitech-mx-mechanical.png","specs":"Tactile switches, multi-device, backlit"}
+                 ]'>
                 <div class="card-image">
-                    <img src="ChatGPT Image 28 Jun 2025, 00.58.15.png" alt="Mechanical Keyboard" style="height: 230px;">
+                    <img src="ChatGPT Image 28 Jun 2025, 00.58.15.png" alt="Mechanical Keyboard">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>Mechanical Keyboards</h3>
                     <p>Responsive keys with customizable RGB lighting for the ultimate typing experience.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="Mechanical Keyboards">View Details</a>
                 </div>
             </div>
-            <div class="card" data-description="Latest generation CPUs for gaming, content creation, and professional workloads. Multi-core processors with high clock speeds and efficient power consumption.">
+
+            <!-- Processors Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"Intel Core i9-13900K","price":"Rp 7.999.000","image":"intel-core-i9.png","specs":"24 cores, 5.8GHz boost, 36MB cache"},
+                     {"name":"AMD Ryzen 9 7950X","price":"Rp 8.499.000","image":"amd-ryzen-9.png","specs":"16 cores, 5.7GHz boost, 80MB cache"}
+                 ]'>
                 <div class="card-image">
-                    <img src="ChatGPT Image 28 Jun 2025, 01.47.28.png" alt="Processor" style="height: 230px;">
+                    <img src="ChatGPT Image 28 Jun 2025, 01.47.28.png" alt="Processor">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>High-Performance Processors</h3>
                     <p>Latest generation CPUs for gaming, content creation, and professional workloads.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="High-Performance Processors">View Details</a>
                 </div>
             </div>
-            <div class="card" data-description="Crystal-clear displays with high refresh rates for immersive viewing experiences. 4K resolution with HDR support and wide color gamut for accurate color reproduction.">
+
+            <!-- Monitors Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"LG UltraFine 4K","price":"Rp 5.999.000","image":"lg-ultrafine.png","specs":"27\", 3840x2160, 99% DCI-P3"},
+                     {"name":"ASUS ROG Swift","price":"Rp 8.499.000","image":"asus-rog-swift.png","specs":"32\", 4K UHD, 144Hz, HDR600"}
+                 ]'>
                 <div class="card-image">
-                    <img src="ChatGPT Image 28 Jun 2025, 01.41.58.png" alt="Computer Monitor" style="height: 230px;">
+                    <img src="ChatGPT Image 28 Jun 2025, 01.41.58.png" alt="Computer Monitor">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>4K Monitors</h3>
                     <p>Crystal-clear displays with high refresh rates for immersive viewing experiences.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="4K Monitors">View Details</a>
                 </div>
             </div>
-            <div class="card" data-description="Portable workstations with cutting-edge performance and battery life. Thin and light designs with powerful processors and dedicated graphics for professionals on the go.">
+
+            <!-- Laptops Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"MacBook Pro 16\"","price":"Rp 32.999.000","image":"macbook-pro.png","specs":"M2 Max, 32GB RAM, 1TB SSD"},
+                     {"name":"Dell XPS 15","price":"Rp 28.499.000","image":"dell-xps.png","specs":"i9-13900H, RTX 4070, 32GB RAM"}
+                 ]'>
                 <div class="card-image">
-                    <img src="Laptop Gaming dengan Latar Abstrak Berwarna.png" alt="Laptop" style="height: 230px;">
+                    <img src="Laptop Gaming dengan Latar Abstrak Berwarna.png" alt="Laptop">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>Powerful Laptops</h3>
                     <p>Portable workstations with cutting-edge performance and battery life.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="Powerful Laptops">View Details</a>
                 </div>
             </div>
-            <div class="card" data-description="Top-tier GPUs for gaming, AI development, and graphic-intensive applications. Real-time ray tracing and AI acceleration for the most demanding visual workloads.">
+
+            <!-- Graphics Cards Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"NVIDIA RTX 4090","price":"Rp 24.999.000","image":"rtx-4090.png","specs":"24GB GDDR6X, 16384 CUDA cores"},
+                     {"name":"AMD RX 7900 XTX","price":"Rp 18.999.000","image":"rx-7900.png","specs":"24GB GDDR6, 6144 stream processors"}
+                 ]'>
                 <div class="card-image">
-                    <img src="Kartu Grafis dengan Lampu LED Berwarna.png" alt="Graphics Card" style="height: 230px;">
+                    <img src="Kartu Grafis dengan Lampu LED Berwarna.png" alt="Graphics Card">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>Graphics Cards</h3>
                     <p>Top-tier GPUs for gaming, AI development, and graphic-intensive applications.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="Graphics Cards">View Details</a>
                 </div>
             </div>
-            <div class="card" data-description="SSD and NVMe solutions for lightning-fast data access and transfer speeds. High endurance ratings with advanced error correction for reliable long-term storage.">
+
+            <!-- Storage Card -->
+            <div class="card" 
+                 data-brands='[
+                     {"name":"Samsung 990 Pro","price":"Rp 3.499.000","image":"samsung-990.png","specs":"2TB NVMe, 7450MB/s read, 6900MB/s write"},
+                     {"name":"WD Black SN850X","price":"Rp 2.999.000","image":"wd-black.png","specs":"2TB NVMe, 7300MB/s read, 6600MB/s write"}
+                 ]'>
                 <div class="card-image">
-                    <img src="ChatGPT Image 28 Jun 2025, 01.55.08.png" alt="SSD Storage" style="height: 230px;">
+                    <img src="ChatGPT Image 28 Jun 2025, 01.55.08.png" alt="SSD Storage">
                 </div>
                 <div class="divider"></div>
                 <div class="card-content">
                     <h3>High-Speed Storage</h3>
                     <p>SSD and NVMe solutions for lightning-fast data access and transfer speeds.</p>
-                    <a href="#" class="btn view-details">View Details</a>
+                    <a href="#" class="btn view-details" data-product="High-Speed Storage">View Details</a>
                 </div>
             </div>
         </div>
@@ -1044,18 +1211,28 @@
         </div>
     </div>
 
+    <!-- Brand Selection Overlay -->
+    <div class="brand-overlay" id="brandOverlay">
+        <div class="brand-container">
+            <button class="close-brand-overlay">&times;</button>
+            <div class="brand-header">
+                <h3 id="brandProductTitle">Product Title</h3>
+                <p>Select a brand to view details</p>
+            </div>
+            <div class="brand-grid" id="brandGrid">
+                <!-- Brands will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
     <footer class="footer" id="contact">
         <div class="footer-container">
             <div class="footer-logo">
                 <img src="logo putih 1.png" alt="On IT Logo">
                 <p>Your No.1 Total IT Solution Partner. Quality products, expert solutions, and unparalleled service.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
+                <a href="https://wa.me/6285232931133" class="btn whatsapp-btn" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fab fa-whatsapp"></i> Contact via WhatsApp
+                </a>
             </div>
             
             <div class="footer-column">
@@ -1065,7 +1242,6 @@
                     <li><a href="#features"><i class="fas fa-chevron-right"></i> Products</a></li>
                     <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
                     <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
                 </ul>
             </div>
             
@@ -1076,12 +1252,11 @@
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Networking Solutions</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Software Solutions</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> IT Services</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
-                <h3>Contact Us</h3>
+                <h3>Contact Info</h3>
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -1100,8 +1275,11 @@
                         <span>Mon-Fri: 9AM - 6PM</span>
                     </div>
                 </div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.800350483343!2d107.61872931537382!3d-6.914077369406447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7a9a8b9a9b9%3A0x2e68e7a9a8b9a9b9!2sTech%20Street!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
@@ -1110,7 +1288,7 @@
             <p>&copy; 2025 On IT. All rights reserved.</p>
             <div class="footer-legal">
                 <a href="#">Privacy Policy</a>
-                                <a href="#">Terms of Service</a>
+                <a href="#">Terms of Service</a>
                 <a href="#">Cookie Policy</a>
             </div>
         </div>
@@ -1257,6 +1435,73 @@
                 if (e.key === 'Escape' && overlay.classList.contains('show')) {
                     overlay.classList.remove('show');
                     document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            });
+        });
+
+        // Brand Selection Overlay Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const brandOverlay = document.getElementById('brandOverlay');
+            const brandProductTitle = document.getElementById('brandProductTitle');
+            const brandGrid = document.getElementById('brandGrid');
+            const closeBrandOverlay = document.querySelector('.close-brand-overlay');
+
+            // Handle view details button clicks
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const card = this.closest('.card');
+                    const productName = this.dataset.product;
+                    const brands = JSON.parse(card.dataset.brands);
+
+                    // Set product title
+                    brandProductTitle.textContent = productName;
+
+                    // Clear previous brands
+                    brandGrid.innerHTML = '';
+
+                    // Add brands to grid
+                    brands.forEach(brand => {
+                        const brandCard = document.createElement('div');
+                        brandCard.className = 'brand-card';
+                        brandCard.innerHTML = `
+                            <img src="${brand.image}" alt="${brand.name}" class="brand-image">
+                            <div class="brand-name">${brand.name}</div>
+                            <div class="brand-price">${brand.price}</div>
+                            <div class="brand-specs">${brand.specs}</div>
+                        `;
+                        brandCard.addEventListener('click', function() {
+                            // Here you can show more details about the selected brand
+                            alert(`Selected: ${brand.name}\nPrice: ${brand.price}\nSpecs: ${brand.specs}`);
+                        });
+                        brandGrid.appendChild(brandCard);
+                    });
+
+                    // Show overlay
+                    brandOverlay.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close overlay
+            closeBrandOverlay.addEventListener('click', function() {
+                brandOverlay.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+
+            // Close when clicking outside container
+            brandOverlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    brandOverlay.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && brandOverlay.classList.contains('show')) {
+                    brandOverlay.classList.remove('show');
+                    document.body.style.overflow = '';
                 }
             });
         });
